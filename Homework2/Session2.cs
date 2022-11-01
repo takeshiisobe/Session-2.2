@@ -35,7 +35,7 @@ namespace DemoLearning2Part2
         {
             foreach (var data in cleanUpList)
             {
-                var restRequest = new RestRequest(GetURI($"{PetEndpoint}/{data.id}"));
+                var restRequest = new RestRequest(GetURI($"{PetEndpoint}/{data.Id}"));
                 var restResponse = await restClient.DeleteAsync(restRequest);
             }
         }
@@ -47,31 +47,23 @@ namespace DemoLearning2Part2
             //Create User
             var newPet = new Petmodel()
             {
-                id = 1998,
-                category = new Category()
+                Id = 1998,
+                Category = new Category()
                 {
-                    id = 0115,
-                    name = "Takeshi"
+                    Id = 0115,
+                    Name = "Takeshi"
                 },
 
 
-                name = "Isobe",
-                photoUrls = new string[]
+                Name = "Isobe",
+                PhotoUrls = new string[]
                 {
                     "facebook.com"
                 },
 
-                tags = new Tag[]
-                {
-                    new Tag()
-                    {
-                     id = 111,
-                     name = "Tag of Pet"
+                Tags = new Category[] { new Category { Id = 9999, Name = "Takeshi" } },
 
-                    }
-
-                },
-                status = "available"
+                Status = "available"
             };
 
 
@@ -85,18 +77,18 @@ namespace DemoLearning2Part2
             #endregion
 
             #region GetUser
-            var restRequest = new RestRequest(GetURI($"{PetEndpoint}/{newPet.id}"), Method.Get);
+            var restRequest = new RestRequest(GetURI($"{PetEndpoint}/{newPet.Id}"), Method.Get);
             var restResponse = await restClient.ExecuteAsync<Petmodel>(restRequest);
             #endregion
 
             #region Assertions
             Assert.AreEqual(HttpStatusCode.OK, restResponse.StatusCode, "Status code is not equal to 200");
-            Assert.AreEqual(newPet.name, restResponse.Data.name, "Pet Name did not match.");
-            Assert.AreEqual(newPet.category.id, restResponse.Data.category.id, "Pet Category ID did not match.");
-            Assert.AreEqual(newPet.category.name, restResponse.Data.category.name, "Pet Category ID did not match.");
-            Assert.AreEqual(newPet.photoUrls[0], restResponse.Data.photoUrls[0], "PhotoURLs did not match.");
-            Assert.AreEqual(newPet.tags[0].id, restResponse.Data.tags[0].id, "Pet Tag ID did not match.");
-            Assert.AreEqual(newPet.tags[0].name, restResponse.Data.tags[0].name, "Pet Tag ID did not match.");
+            Assert.AreEqual(newPet.Name, restResponse.Data.Name, "Pet Name did not match.");
+            Assert.AreEqual(newPet.Category.Id, restResponse.Data.Category.Id, "Pet Category ID did not match.");
+            Assert.AreEqual(newPet.Category.Name, restResponse.Data.Category.Name, "Pet Category ID did not match.");
+            Assert.AreEqual(newPet.PhotoUrls[0], restResponse.Data.PhotoUrls[0], "PhotoURLs did not match.");
+            Assert.AreEqual(newPet.Tags[0].Id, restResponse.Data.Tags[0].Id, "Pet Tag ID did not match.");
+            Assert.AreEqual(newPet.Tags[0].Name, restResponse.Data.Tags[0].Name, "Pet Tag ID did not match.");
             #endregion
 
             #region CleanUp

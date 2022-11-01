@@ -3,29 +3,37 @@ using System;
 
 namespace DemoLearning2Part2
 {
-  
 
 
-      public class Petmodel
+
+    public class Petmodel
     {
-        public int id { get; set; }
-        public Category category { get; set; }
-        public string name { get; set; }
-        public string[] photoUrls { get; set; }
-        public Tag[] tags { get; set; }
-        public string status { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("category")]
+        public Category Category { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("photoUrls")]
+        public string[] PhotoUrls { get; set; }
+
+        [JsonProperty("tags")]
+        public Category[] Tags { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 
     public class Category
     {
-        public int id { get; set; }
-        public string name { get; set; }
-    }
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
-    public class Tag
-    {
-        public int id { get; set; }
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 
 
